@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "更新启动文件"
+wget -O /init.sh   https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/init.sh
 
 echo "下载配置文件"
 cd /root
@@ -14,6 +16,8 @@ wget -O /etc/nginx/enable_php.conf   https://raw.githubusercontent.com/012345432
 wget -O /etc/nginx/nginx.conf   https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/nginx/nginx.conf
 wget -O /etc/nginx/vhost/om.wangjm.ml.conf    https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/nginx/vhost/om.wangjm.ml.conf
 wget -O /etc/php/7.4/fpm/pool.d/www.conf   https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/php/www.conf
+
+wget -O /root/frp/frps.ini  https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/frps/frps.ini
 
 echo "启动服务"
 wstunnel -s 127.0.0.1:8989 & 
