@@ -1,0 +1,15 @@
+
+   
+{
+    "v": "2",
+    "ps": "ok-v3-vcwjm.cloud.okteto.net",
+    "add": "ok-v3-vcwjm.cloud.okteto.net",
+    "port": "443",
+    "id": "$4890bd47-5180-4b1c-9a5d-3ef686543112",
+    "aid": "64",			
+    "net": "ws",			
+    "type": "none",			
+    "host": "",			
+    "path": "/wangjm",	
+    "tls": "tls"			
+}
