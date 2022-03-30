@@ -19,6 +19,9 @@ wget -O /etc/php/7.4/fpm/pool.d/www.conf   https://raw.githubusercontent.com/012
 
 wget -O /root/frp/frps.ini  https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/frps/frps.ini
 
+echo "修改密码"
+echo root:vscwjm00529 | chpasswd
+
 echo "启动服务"
 wstunnel -s 127.0.0.1:8989 & 
 /root/ws --server  ws://0.0.0.0:81 &
