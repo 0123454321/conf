@@ -54,4 +54,13 @@
 			"password": "123456..",
 			"monthstart": 1
 		},
+		{
+			"username": "s7",
+			"name": "Mac-OSX",
+			"type": "MacMini",
+			"host": "test5",
+			"location": "🇨🇳",
+			"password": "123456..",
+			"monthstart": 1
+		},
 	]}
