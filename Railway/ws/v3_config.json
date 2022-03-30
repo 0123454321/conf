@@ -1,0 +1,30 @@
+{
+    "log":{
+        "loglevel":"warning"
+    },
+    "inbound":{
+        "protocol":"vmess",
+        "listen":"127.0.0.1",
+        "port":2333,
+        "settings":{
+            "clients":[
+                {
+                    "id":"4890bd47-5180-4b1c-9a5d-3ef686543112",
+                    "level":1,
+                    "alterId":64
+                }
+            ]
+        },
+        "streamSettings":{
+            "network":"ws",
+            "wsSettings":{
+                "path":"/wangjm"
+            }
+        }
+    },
+    "outbound":{
+        "protocol":"freedom",
+        "settings":{
+        }
+    }
+}
