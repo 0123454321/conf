@@ -1,0 +1,45 @@
+ 0.0.0.0:2000 {
+# tls self_signed
+# log stdout
+
+ # Proxy to Kasm running locally on port 8443
+ proxy / https://localhost:3000 {
+
+         # By default Kasm Workspaces installs with self-signed certificates. If these are not replaced
+         # then Caddy must be instructed to skip verification of these certs.
+         insecure_skip_verify
+
+         # WebSocket Support
+         header_upstream Connection {>Connection}
+         header_upstream Upgrade {>Upgrade}
+
+
+         # Host and X headers
+         header_upstream Host {host}
+         header_upstream X-Real-IP {remote}
+         header_upstream X-Forwarded-For {remote}
+         header_upstream X-Forwarded-Port {server_port}
+         header_upstream X-Forwarded-Proto {scheme}
+ }
+}
+
+http://0.0.0.0:2005 {
+proxy / om.wangjm.ml:7080 {
+	websocket
+	header_upstream -Origin
+ }
+}
+
+http://0.0.0.0:2006 {
+proxy / bd.wangjm.ml:7080 {
+	websocket
+	header_upstream -Origin
+ }
+}
+
+http://0.0.0.0:2007 {
+proxy / localhost:3001 {
+	websocket
+	header_upstream -Origin
+ }
+}
