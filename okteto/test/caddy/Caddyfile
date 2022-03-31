@@ -37,9 +37,9 @@ proxy / bd.wangjm.ml:7080 {
  }
 }
 
-http://0.0.0.0:2007 {
-proxy / localhost:3001 {
-	websocket
-	header_upstream -Origin
- }
-}
+#http://0.0.0.0:2007 {
+#proxy / localhost:3001 {
+#	websocket
+#	header_upstream -Origin
+# }
+#}
