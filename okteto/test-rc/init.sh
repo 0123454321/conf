@@ -3,6 +3,12 @@
 echo "更新启动文件"
 wget -O /init.sh   https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/init.sh
 
+echo "安装服务"
+if [ ! -f /root/rc.zip  ]
+wget -O /root/rc.zip https://github.com/rclone/rclone/releases/download/v1.58.0/rclone-v1.58.0-linux-amd64.zip
+unzip /root/rc.zip -d /root/
+mv /root/rclone-v1.58.0-linux-amd64 /root/rc
+
 echo "下载配置文件"
 cd /root
 wget -O /root/ServerStatus/server/config.json   https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/ServerStatus/ServerStatus-config.json
