@@ -34,6 +34,7 @@ if [ ! -f /etc//mnt/date/log/om.wangjm.ml.log ] ; then
   mkdir -p /mnt/date/log
   touch /mnt/date/log/om.wangjm.ml.log
   touch /mnt/date/log/om.wangjm.ml.error.log;
+  chmod -R 766 /mnt/date/log
 fi
 
 wget -O /etc/php/7.4/fpm/pool.d/www.conf   ${BASE_URL}/php/www.conf
