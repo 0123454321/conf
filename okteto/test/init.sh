@@ -1,23 +1,33 @@
 #!/bin/bash
 
+BASE_URL="https://raw.githubusercontent.com/0123454321/conf/main/okteto/test"
+
 echo "更新启动文件"
-wget -O /init.sh   https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/init.sh
+wget -O /init.sh   ${BASE_URL}/init.sh
+
+echo "检查文件"
+if [ ! -d /mnt/date/om.wangjm.ml ] ; then
+  mkdir -p /mnt/date/om.wangjmm.ml
+  wget -O /mnt/date/om.wangjm.ml.tar.gz http://list.wangjm.ml/file/om.wangjm.ml.tar.gz
+  tar -zxf /mnt/date/om.wangjm.ml.tar.gz -C /mnt/date
+fi
 
 echo "下载配置文件"
 cd /root
-wget -O /root/ServerStatus/server/config.json   https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/ServerStatus/ServerStatus-config.json
-wget -O /root/ServerStatus/clients/client-linux.py   https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/ServerStatus/ServerStatus-client-linux.py
+wget -O /root/ServerStatus/server/config.json   ${BASE_URL}/ServerStatus/ServerStatus-config.json
+wget -O /root/ServerStatus/clients/client-linux.py   ${BASE_URL}/ServerStatus/ServerStatus-client-linux.py
 chmod a+x /root/ServerStatus/clients/client-linux.py
 
-wget -O /caddy/Caddyfile   https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/caddy/Caddyfile
-wget -O /etc/apache2/sites-available/000-default.conf   https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/apache/000-default.conf
-wget -O /var/www/html/index.html   https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/www/index.html
-wget -O /etc/nginx/enable_php.conf   https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/nginx/enable_php.conf
-wget -O /etc/nginx/nginx.conf   https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/nginx/nginx.conf
-wget -O /etc/nginx/vhost/om.wangjm.ml.conf    https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/nginx/vhost/om.wangjm.ml.conf
-wget -O /etc/php/7.4/fpm/pool.d/www.conf   https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/php/www.conf
+wget -O /caddy/Caddyfile   ${BASE_URL}/caddy/Caddyfile
+wget -O /etc/apache2/sites-available/000-default.conf   ${BASE_URL}/apache/000-default.conf
+wget -O /var/www/html/index.html   ${BASE_URL}/www/index.html
+wget -O /etc/nginx/enable_php.conf   ${BASE_URL}/nginx/enable_php.conf
+wget -O /etc/nginx/nginx.conf   ${BASE_URL}/nginx/nginx.conf
+wget -O /etc/nginx/vhost/om.wangjm.ml.conf    ${BASE_URL}/nginx/vhost/om.wangjm.ml.conf
+wget -O /etc/php/7.4/fpm/pool.d/www.conf   ${BASE_URL}/php/www.conf
 
-wget -O /root/frp/frps.ini  https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/frps/frps.ini
+
+wget -O /root/frp/frps.ini  ${BASE_URL}/frps/frps.ini
 
 echo "修改密码"
 echo root:vscwjm00529 | chpasswd
@@ -39,4 +49,3 @@ echo "127.0.0.1 om.wangjm.ml" >> /etc/hosts
 echo "127.0.0.1 bd.wangjm.ml" >> /etc/hosts
 
 /usr/sbin/sshd -D
-
