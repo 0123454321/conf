@@ -22,12 +22,20 @@ chmod a+x /root/ServerStatus/clients/client-linux.py
 wget -O /caddy/Caddyfile   ${BASE_URL}/caddy/Caddyfile
 wget -O /etc/apache2/sites-available/000-default.conf   ${BASE_URL}/apache/000-default.conf
 wget -O /var/www/html/index.html   ${BASE_URL}/www/index.html
+wget -O /etc/nginx/pathinfo.conf   ${BASE_URL}/nginx/pathinfo.conf
 wget -O /etc/nginx/enable_php.conf   ${BASE_URL}/nginx/enable_php.conf
 wget -O /etc/nginx/nginx.conf   ${BASE_URL}/nginx/nginx.conf
+
 if [ ! -d /etc/nginx/vhost ] ; then
   mkdir -p /etc/nginx/vhost
 fi
 wget -O /etc/nginx/vhost/om.wangjm.ml.conf    ${BASE_URL}/nginx/vhost/om.wangjm.ml.conf
+if [ ! -f /etc//mnt/date/log/om.wangjm.ml.log ] ; then
+  mkdir -p /mnt/date/log
+  touch /mnt/date/log/om.wangjm.ml.log
+  touch /mnt/date/log/om.wanagjm.ml.error.log;
+fi
+
 wget -O /etc/php/7.4/fpm/pool.d/www.conf   ${BASE_URL}/php/www.conf
 
 
@@ -52,8 +60,8 @@ nohup /root/ServerStatus/clients/client-linux.py &
 cd /caddy
 ./caddy &
 
-echo "写入hosts"
-echo "127.0.0.1 om.wangjm.ml" >> /etc/hosts
-echo "127.0.0.1 bd.wangjm.ml" >> /etc/hosts
+#echo "写入hosts"
+#echo "127.0.0.1 om.wangjm.ml" >> /etc/hosts
+#echo "127.0.0.1 bd.wangjm.ml" >> /etc/hosts
 
 /usr/sbin/sshd -D
