@@ -36,6 +36,10 @@ echo "启动服务"
 wstunnel -s 127.0.0.1:8989 & 
 /root/ws --server  ws://0.0.0.0:81 &
 /root/frp/frps -c /root/frp/frps.ini &
+
+mkdir /run/php
+php-fpm7.4
+nginx
 service mysql restart
 service apache2 restart
 cp -r /root/ServerStatus/web/* /var/www/html/
