@@ -23,12 +23,12 @@
  }
 }
 
-http://0.0.0.0:2005 {
-proxy / om.wangjm.ml:7080 {
-	websocket
-	header_upstream -Origin
- }
-}
+#http://0.0.0.0:2005 {
+#proxy / om.wangjm.ml:7080 {
+#	websocket
+#	header_upstream -Origin
+#}
+#}
 
 http://0.0.0.0:2006 {
 proxy / bd.wangjm.ml:7080 {
