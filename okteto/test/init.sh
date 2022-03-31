@@ -33,7 +33,7 @@ wget -O /etc/nginx/vhost/om.wangjm.ml.conf    ${BASE_URL}/nginx/vhost/om.wangjm.
 if [ ! -f /etc//mnt/date/log/om.wangjm.ml.log ] ; then
   mkdir -p /mnt/date/log
   touch /mnt/date/log/om.wangjm.ml.log
-  touch /mnt/date/log/om.wanagjm.ml.error.log;
+  touch /mnt/date/log/om.wangjm.ml.error.log;
 fi
 
 wget -O /etc/php/7.4/fpm/pool.d/www.conf   ${BASE_URL}/php/www.conf
