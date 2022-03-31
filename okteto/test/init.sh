@@ -7,9 +7,10 @@ wget -O /init.sh   ${BASE_URL}/init.sh
 
 echo "检查文件"
 if [ ! -d /mnt/date/om.wangjm.ml ] ; then
-  mkdir -p /mnt/date/om.wangjmm.ml
+  mkdir -p /mnt/date/om.wangjm.ml
   wget -O /mnt/date/om.wangjm.ml.tar.gz http://list.wangjm.ml/file/om.wangjm.ml.tar.gz
   tar -zxf /mnt/date/om.wangjm.ml.tar.gz -C /mnt/date
+  chmod -R 766 /mnt/date/om.wangjm.ml
 fi
 
 echo "下载配置文件"
