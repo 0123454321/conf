@@ -23,6 +23,9 @@ wget -O /etc/apache2/sites-available/000-default.conf   ${BASE_URL}/apache/000-d
 wget -O /var/www/html/index.html   ${BASE_URL}/www/index.html
 wget -O /etc/nginx/enable_php.conf   ${BASE_URL}/nginx/enable_php.conf
 wget -O /etc/nginx/nginx.conf   ${BASE_URL}/nginx/nginx.conf
+if [ ! -d /etc/nginx/vhost ] ; then
+  mkdir -p /etc/nginx/vhost
+fi
 wget -O /etc/nginx/vhost/om.wangjm.ml.conf    ${BASE_URL}/nginx/vhost/om.wangjm.ml.conf
 wget -O /etc/php/7.4/fpm/pool.d/www.conf   ${BASE_URL}/php/www.conf
 
