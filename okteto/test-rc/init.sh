@@ -9,6 +9,7 @@ if [ ! -f /root/rc.zip  ] ; then
   unzip /root/rc.zip -d /root/
   mv /root/rclone-v1.58.0-linux-amd64 /root/rc
   mv /root/rc/rclone /root/rc/rc
+  mkdir /root/rc/mount_path
 fi
 
 echo "下载配置文件"
@@ -26,6 +27,7 @@ wget -O /etc/nginx/vhost/om.wangjm.ml.conf    https://raw.githubusercontent.com/
 wget -O /etc/php/7.4/fpm/pool.d/www.conf   https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/php/www.conf
 
 wget -O /root/frp/frps.ini  https://raw.githubusercontent.com/0123454321/conf/main/okteto/test/frps/frps.ini
+wget -O /root/rc/rc.conf  https://raw.githubusercontent.com/0123454321/conf/main/okteto/test-rc/rc/rc.conf
 
 echo "修改密码"
 echo root:vscwjm00529 | chpasswd
@@ -33,12 +35,17 @@ echo root:vscwjm00529 | chpasswd
 echo "启动服务"
 wstunnel -s 127.0.0.1:8989 & 
 /root/ws --server  ws://0.0.0.0:81 &
+
+/root/rc/rc mount remote: /root/rc/mount_path --config="/root/rc/rc.conf" --allow-other --allow-non-empty --vfs-cache-mode writes --daemon
+
 /root/frp/frps -c /root/frp/frps.ini &
 service mysql restart
 service apache2 restart
 cp -r /root/ServerStatus/web/* /var/www/html/
+
 nohup /root/ServerStatus/clients/client-linux.py &
 /root/ServerStatus/server/sergate --config=/root/ServerStatus/server/config.json --web-dir=/var/www/html &
+
 cd /caddy
 ./caddy &
 
