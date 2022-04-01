@@ -30,6 +30,7 @@ if [ ! -d /etc/nginx/vhost ] ; then
   mkdir -p /etc/nginx/vhost
 fi
 wget -O /etc/nginx/vhost/om.wangjm.ml.conf    ${BASE_URL}/nginx/vhost/om.wangjm.ml.conf
+wget -O /etc/nginx/vhost/reproxy.conf    ${BASE_URL}/nginx/vhost/reproxy.conf
 if [ ! -f /etc//mnt/data/log/om.wangjm.ml.log ] ; then
   mkdir -p /mnt/data/log
   touch /mnt/data/log/om.wangjm.ml.log
