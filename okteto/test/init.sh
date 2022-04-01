@@ -62,7 +62,7 @@ wget -O /root/frp/frps.ini  ${BASE_URL}/frps/frps.ini
 echo "生成R2配置文件"
 if [ ! -f /mnt/data/R2/R2_Conf.tar.gz ] ; then
   wget -O /mnt/data/R2/R2_Conf.tar.gz ${BASE_URL}/R2/R2_Conf.tar.gz
-  tar -zxf R2_Conf.tar.gz -C /mnt/data/R2
+  tar -zxf /mnt/data/R2/R2_Conf.tar.gz -C /mnt/data/R2
   cd ${R2_conf_dir}
   sed -i "s@^\(dir=\).*@\1${download_path}@" ${R2_conf}
   sed -i "s@/root/.aria2/@${aria2_conf_dir}/@" ${R2_conf_dir}/*.conf
