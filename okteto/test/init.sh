@@ -12,7 +12,7 @@ wget -O /init.sh   ${BASE_URL}/init.sh
 echo "下载OM资源文件"
 if [ ! -d /mnt/data/om.wangjm.ml ] ; then
   mkdir -p /mnt/data/
-  wget -O /mnt/data/om.wangjm.ml.tar.gz http://list.wangjm.ml/file/om.wangjm.ml.tar.gz
+  wget -O /mnt/data/om.wangjm.ml.tar.gz http://175.178.175.113:2100//file/om.wangjm.ml.tar.gz
   tar -zxf /mnt/data/om.wangjm.ml.tar.gz -C /mnt/data
 #  chmod -R 766 /mnt/data/om.wangjm.ml
 fi
