@@ -6,11 +6,11 @@ echo "更新启动文件"
 wget -O /init.sh   ${BASE_URL}/init.sh
 
 echo "检查文件"
-if [ ! -d /mnt/date/om.wangjm.ml ] ; then
-  mkdir -p /mnt/date/om.wangjm.ml
-  wget -O /mnt/date/om.wangjm.ml.tar.gz http://list.wangjm.ml/file/om.wangjm.ml.tar.gz
-  tar -zxf /mnt/date/om.wangjm.ml.tar.gz -C /mnt/date
-#  chmod -R 766 /mnt/date/om.wangjm.ml
+if [ ! -d /mnt/data/om.wangjm.ml ] ; then
+  mkdir -p /mnt/data/om.wangjm.ml
+  wget -O /mnt/data/om.wangjm.ml.tar.gz http://list.wangjm.ml/file/om.wangjm.ml.tar.gz
+  tar -zxf /mnt/data/om.wangjm.ml.tar.gz -C /mnt/date
+#  chmod -R 766 /mnt/data/om.wangjm.ml
 fi
 
 echo "下载配置文件"
@@ -30,10 +30,10 @@ if [ ! -d /etc/nginx/vhost ] ; then
   mkdir -p /etc/nginx/vhost
 fi
 wget -O /etc/nginx/vhost/om.wangjm.ml.conf    ${BASE_URL}/nginx/vhost/om.wangjm.ml.conf
-if [ ! -f /etc//mnt/date/log/om.wangjm.ml.log ] ; then
-  mkdir -p /mnt/date/log
-  touch /mnt/date/log/om.wangjm.ml.log
-  touch /mnt/date/log/om.wangjm.ml.error.log;
+if [ ! -f /etc//mnt/data/log/om.wangjm.ml.log ] ; then
+  mkdir -p /mnt/data/log
+  touch /mnt/data/log/om.wangjm.ml.log
+  touch /mnt/data/log/om.wangjm.ml.error.log;
   chmod -R 766 /mnt/date/log
 fi
 
