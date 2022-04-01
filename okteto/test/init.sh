@@ -7,7 +7,7 @@ wget -O /init.sh   ${BASE_URL}/init.sh
 
 echo "检查文件"
 if [ ! -d /mnt/data/om.wangjm.ml ] ; then
-  mkdir -p /mnt/data/om.wangjm.ml
+#  mkdir -p /mnt/data/om.wangjm.ml
   wget -O /mnt/data/om.wangjm.ml.tar.gz http://list.wangjm.ml/file/om.wangjm.ml.tar.gz
   tar -zxf /mnt/data/om.wangjm.ml.tar.gz -C /mnt/date
 #  chmod -R 766 /mnt/data/om.wangjm.ml
