@@ -23,18 +23,6 @@
  }
 }
 
-http://0.0.0.0:2001 {
-	proxy /op http://localhost:2100 {
-		websocket
-		header_upstream -Origin
- 	}
-	proxy /bt localhost:2101 {
-		websocket
-		header_upstream -Origin
- 	}
-
-}
-
 #http://0.0.0.0:2005 {
 #proxy / om.wangjm.ml:7080 {
 #	websocket
