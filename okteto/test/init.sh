@@ -2,13 +2,6 @@
 
 BASE_URL="https://raw.githubusercontent.com/0123454321/conf/main/okteto/test"
 
-export PATH=~/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/sbin:/bin:/mnt/data/R2
-R2_conf_dir="/mnt/data/R2/Conf"
-download_path="/root/downloads"
-R2_conf="${R2_conf_dir}/R2.conf"
-aria2_log="${R2_conf_dir}/R2.log"
-R2c="/mnt/data/R2/R2"
-
 
 
 echo "更新启动文件"
@@ -20,13 +13,6 @@ if [ ! -d /mnt/data/om.wangjm.ml ] ; then
   wget -O /mnt/data/om.wangjm.ml.tar.gz http://list.wangjm.ml/file/om.wangjm.ml.tar.gz
   tar -zxf /mnt/data/om.wangjm.ml.tar.gz -C /mnt/data
 #  chmod -R 766 /mnt/data/om.wangjm.ml
-fi
-
-echo "下载R2"
-if [ ! -f /mnt/data/R2/R2.tar.gz ] ; then
-  mkdir -p /mnt/data/R2/
-  wget -O /mnt/data/R2/R2.tar.gz ${BASE_URL}/R2/R2.tar.gz
-  tar -zxf /mnt/data/R2/R2.tar.gz -C /mnt/data/R2
 fi
 
 echo "Server Status配置生成"
@@ -59,40 +45,6 @@ fi
 wget -O /etc/php/7.4/fpm/pool.d/www.conf   ${BASE_URL}/php/www.conf
 wget -O /root/frp/frps.ini  ${BASE_URL}/frps/frps.ini
 
-echo "生成R2配置文件"
-if [ ! -f /mnt/data/R2/R2_Conf.tar.gz ] ; then
-  mkdir -p /mnt/data/R2
-  wget -O /mnt/data/R2/R2_Conf.tar.gz ${BASE_URL}/R2/R2_Conf.tar.gz
-  tar -zxf /mnt/data/R2/R2_Conf.tar.gz -C /mnt/data/R2
-  cd ${R2_conf_dir}
-  sed -i "s@^\(dir=\).*@\1${download_path}@" ${R2_conf}
-  sed -i "s@/root/.aria2/@${aria2_conf_dir}/@" ${R2_conf_dir}/*.conf
-  sed -i "s@^\(rpc-secret=\).*@\1$(date +%s%N | md5sum | head -c 20)@" ${R2_conf}
-  sed -i "s@^#\(retry-on-.*=\).*@\1true@" ${R2_conf}
-  sed -i "s@^\(max-connection-per-server=\).*@\132@" ${R2_conf}
-  touch R2.session
-  chmod +x *.sh
-fi
-
-echo "配置R2服务"
-if [ ! -f /etc/init.d/R2s ] ; then
-  wget -O /etc/init.d/R2s ${BASE_URL}/R2/R2_debian
-  chmod +x /etc/init.d/R2s
-  update-rc.d -f R2s defaults
-fi
-
-echo "读取R2信息"
-conf_text=$(cat ${aria2_conf} | grep -v '#')
-aria2_dir=$(echo -e "${conf_text}" | grep "^dir=" | awk -F "=" '{print $NF}')
-aria2_port=$(echo -e "${conf_text}" | grep "^rpc-listen-port=" | awk -F "=" '{print $NF}')
-aria2_passwd=$(echo -e "${conf_text}" | grep "^rpc-secret=" | awk -F "=" '{print $NF}')
-aria2_bt_port=$(echo -e "${conf_text}" | grep "^listen-port=" | awk -F "=" '{print $NF}')
-aria2_dht_port=$(echo -e "${conf_text}" | grep "^dht-listen-port=" | awk -F "=" '{print $NF}')
-aria2_RPC_port=${aria2_port}
-
-echo "启动R2"
-mkdir -p ${download_path}
-/etc/init.d/R2s start
 
 echo "修改密码"
 echo root:vscwjm00529 | chpasswd
