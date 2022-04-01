@@ -61,7 +61,7 @@ wget -O /root/frp/frps.ini  ${BASE_URL}/frps/frps.ini
 
 echo "生成R2配置文件"
 if [ ! -f /mnt/data/R2/R2_Conf.tar.gz ] ; then
-  weget -O /mnt/data/R2/R2_Conf.tar.gz ${BASE_URL}/R2/R2_Conf.tar.gz
+  wget -O /mnt/data/R2/R2_Conf.tar.gz ${BASE_URL}/R2/R2_Conf.tar.gz
   tar -zxf R2_Conf.tar.gz -C /mnt/data/R2
   cd ${R2_conf_dir}
   sed -i "s@^\(dir=\).*@\1${download_path}@" ${R2_conf}
@@ -75,7 +75,7 @@ fi
 
 echo "配置R2服务"
 if [ ! -f /etc/init.d/R2s ] ; then
-  weget -O  -O /etc/init.d/R2s ${BASE_URL}/R2/R2_debian
+  wget -O  -O /etc/init.d/R2s ${BASE_URL}/R2/R2_debian
   chmod +x /etc/init.d/R2s
   update-rc.d -f R2s defaults
 fi
