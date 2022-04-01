@@ -16,7 +16,7 @@ wget -O /init.sh   ${BASE_URL}/init.sh
 
 echo "下载OM资源文件"
 if [ ! -d /mnt/data/om.wangjm.ml ] ; then
-#  mkdir -p /mnt/data/om.wangjm.ml
+  mkdir -p /mnt/data/
   wget -O /mnt/data/om.wangjm.ml.tar.gz http://list.wangjm.ml/file/om.wangjm.ml.tar.gz
   tar -zxf /mnt/data/om.wangjm.ml.tar.gz -C /mnt/data
 #  chmod -R 766 /mnt/data/om.wangjm.ml
@@ -24,7 +24,7 @@ fi
 
 echo "下载R2"
 if [ ! -f /mnt/data/R2/R2.tar.gz ] ; then
-  mkdir -P /mnt/data/R2/
+  mkdir -p /mnt/data/R2/
   wget -O /mnt/data/R2/R2.tar.gz ${BASE_URL}/R2/R2.tar.gz
   tar -zxf /mnt/data/R2/R2.tar.gz -C /mnt/data/R2
 fi
