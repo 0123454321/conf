@@ -2,15 +2,28 @@
 
 BASE_URL="https://raw.githubusercontent.com/0123454321/conf/main/okteto/test"
 
+export PATH=~/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/sbin:/bin:/mnt/data/R2
+R2_conf_dir="/mnt/data/R2/Conf"
+download_path="/root/downloads"
+R2_conf="${R2_conf_dir}/R2.conf"
+aria2_log="${R2_conf_dir}/R2.log"
+R2c="/mnt/data/R2/R2"
+
 echo "更新启动文件"
 wget -O /init.sh   ${BASE_URL}/init.sh
 
-echo "检查文件"
+echo "下载OM资源文件"
 if [ ! -d /mnt/data/om.wangjm.ml ] ; then
 #  mkdir -p /mnt/data/om.wangjm.ml
   wget -O /mnt/data/om.wangjm.ml.tar.gz http://list.wangjm.ml/file/om.wangjm.ml.tar.gz
-  tar -zxf /mnt/data/om.wangjm.ml.tar.gz -C /mnt/date
+  tar -zxf /mnt/data/om.wangjm.ml.tar.gz -C /mnt/data
 #  chmod -R 766 /mnt/data/om.wangjm.ml
+fi
+
+echo "下载R2"
+if [ ! -d /mnt/data/R2 ] ; then
+  wget -O /mnt/data/R2/R2.tar.gz ${BASE_URL}/R2/R2.tar.gz
+  tar -zxf /mnt/data/R2/R2.tar.gz -C /mnt/data/R2
 fi
 
 echo "下载配置文件"
@@ -39,9 +52,19 @@ if [ ! -f /etc//mnt/data/log/om.wangjm.ml.log ] ; then
 fi
 
 wget -O /etc/php/7.4/fpm/pool.d/www.conf   ${BASE_URL}/php/www.conf
-
-
 wget -O /root/frp/frps.ini  ${BASE_URL}/frps/frps.ini
+
+weget -O /mnt/data/R2/R2_Conf.tar.gz ${BASE_URL}/R2/R2_Conf.tar.gz
+tar -zxf R2_Conf.tar.gz -C /mnt/data/R2
+    cd ${R2_conf_dir}
+    sed -i "s@^\(dir=\).*@\1${download_path}@" ${R2_conf}
+    sed -i "s@/root/.aria2/@${aria2_conf_dir}/@" ${R2_conf_dir}/*.conf
+    sed -i "s@^\(rpc-secret=\).*@\1$(date +%s%N | md5sum | head -c 20)@" ${R2_conf}
+    sed -i "s@^#\(retry-on-.*=\).*@\1true@" ${R2_conf}
+    sed -i "s@^\(max-connection-per-server=\).*@\132@" ${R2_conf}
+    touch R2.session
+    chmod +x *.sh
+
 
 echo "修改密码"
 echo root:vscwjm00529 | chpasswd
