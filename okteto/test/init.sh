@@ -76,7 +76,7 @@ fi
 
 echo "配置R2服务"
 if [ ! -f /etc/init.d/R2s ] ; then
-  wget -O  -O /etc/init.d/R2s ${BASE_URL}/R2/R2_debian
+  wget -O /etc/init.d/R2s ${BASE_URL}/R2/R2_debian
   chmod +x /etc/init.d/R2s
   update-rc.d -f R2s defaults
 fi
