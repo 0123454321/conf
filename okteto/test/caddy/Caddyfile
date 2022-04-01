@@ -23,8 +23,8 @@
  }
 }
 
-http://0.0.0.0:2000 {
-	proxy /op localhost:2100 {
+http://0.0.0.0:2001 {
+	proxy /op http://localhost:2100 {
 		websocket
 		header_upstream -Origin
  	}
