@@ -20,7 +20,7 @@ fi
 echo "下载CR资源文件"
 if [ ! -d /mnt/data/cr ] ; then
 #  mkdir -p /mnt/data/
-  wget -O /mnt/data/om.wangjm.ml.tar.gz http://175.178.175.113:2100/file/cr.tar.gz
+  wget -O /mnt/data/cr.tar.gz http://175.178.175.113:2100/file/cr.tar.gz
   tar -zxf /mnt/data/cr.tar.gz -C /mnt/data
 fi
 
@@ -49,7 +49,7 @@ if [ ! -f /etc//mnt/data/log/om.wangjm.ml.log ] ; then
   mkdir -p /mnt/data/log
   touch /mnt/data/log/om.wangjm.ml.log
   touch /mnt/data/log/om.wangjm.ml.error.log;
-  chmod -R 766 /mnt/date/log
+  chmod -R 766 /mnt/data/log
 fi
 
 echo "PHP配置生成"
