@@ -1,13 +1,14 @@
 #!/bin/bash
 
 BASE_URL="https://raw.githubusercontent.com/0123454321/conf/main/okteto/test"
+log_number=$(date +%Y%m%d%H%M)
 
-
+echo "校正时区"
+rm -f /etc/localtime 
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 echo "更新启动文件"
 wget -O /init.sh   ${BASE_URL}/init.sh
-
-
 
 echo "下载OM资源文件"
 if [ ! -d /mnt/data/om.wangjm.ml ] ; then
@@ -82,7 +83,7 @@ echo "启动R2"
 /etc/init.d/r2 start
 
 echo "启动CR"
-/mnt/data/cr/cr &
+/mnt/data/cr/cr >> /mnt/data/cr/log/log_${log_number}.log &
 
 #echo "写入hosts"
 #echo "127.0.0.1 om.wangjm.ml" >> /etc/hosts
