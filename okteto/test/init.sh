@@ -82,7 +82,10 @@ cd /caddy
 echo "启动R2"
 /etc/init.d/r2 start
 
-echo "启动CR"
+echo "启动CR" 
+if [ ! -d /mnt/data/cr/log ] ; then
+  mkdir -p /mnt/data/cr/log
+fi
 /mnt/data/cr/cr >> /mnt/data/cr/log/log_${log_number}.log &
 
 #echo "写入hosts"
