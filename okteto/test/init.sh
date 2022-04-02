@@ -82,7 +82,7 @@ echo "启动R2"
 /etc/init.d/r2 start
 
 echo "启动CR"
-/mnt/data/cr/cr
+/mnt/data/cr/cr &
 
 #echo "写入hosts"
 #echo "127.0.0.1 om.wangjm.ml" >> /etc/hosts
