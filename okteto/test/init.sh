@@ -46,6 +46,11 @@ wget -O /etc/nginx/pathinfo.conf   ${BASE_URL}/nginx/pathinfo.conf
 wget -O /etc/nginx/enable_php.conf   ${BASE_URL}/nginx/enable_php.conf
 wget -O /etc/nginx/nginx.conf   ${BASE_URL}/nginx/nginx.conf
 
+echo "OD-j配置文件生成"
+wget -O /etc/nginx/vhost/od.conf  ${BASE_URL}/nginx/vhost/od.conf
+wget -O /etc/nginx/fcgiwrap.conf https://raw.githubusercontent.com/MICHAEL-888/oneindex-j/cdn/nginx/fcgiwrap.conf
+wget -O /etc/nginx/fcgiwrap-php https://raw.githubusercontent.com/MICHAEL-888/oneindex-j/cdn/nginx/fcgiwrap-php
+
 echo "om配置生成"
 if [ ! -d /etc/nginx/vhost ] ; then
   mkdir -p /etc/nginx/vhost
