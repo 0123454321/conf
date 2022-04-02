@@ -25,6 +25,12 @@ if [ ! -d /mnt/data/cr ] ; then
   tar -zxf /mnt/data/cr.tar.gz -C /mnt/data
 fi
 
+echo "准备OD-j资源文件"
+if [ ! -d /mnt/data/oneindex-j ] ; then 
+  cd /mnt/data
+  git clone https://github.com/jialezi/oneindex-j
+fi
+
 
 echo "Server Status配置生成"
 cd /root
