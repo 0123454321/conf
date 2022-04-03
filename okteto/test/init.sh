@@ -40,29 +40,28 @@ fi
 
 echo "Server Status配置生成"
 cd /root
-wget -O /root/ServerStatus/server/config.json   ${BASE_URL}/ServerStatus/ServerStatus-config.json > /dev/null
-wget -O /root/ServerStatus/clients/client-linux.py   ${BASE_URL}/ServerStatus/ServerStatus-client-linux.py > /dev/null
+wget -O /root/ServerStatus/server/config.json   ${BASE_URL}/ServerStatus/ServerStatus-config.json 
+wget -O /root/ServerStatus/clients/client-linux.py   ${BASE_URL}/ServerStatus/ServerStatus-client-linux.py 
 chmod a+x /root/ServerStatus/clients/client-linux.py
 
 echo "Web Server配置文件生成"
-wget -O /caddy/Caddyfile   ${BASE_URL}/caddy/Caddyfile  > /dev/null
-wget -O /etc/apache2/sites-available/000-default.conf   ${BASE_URL}/apache/000-default.conf > /dev/null
-wget -O /var/www/html/index.html   ${BASE_URL}/www/index.html  > /dev/null
-wget -O /etc/nginx/pathinfo.conf   ${BASE_URL}/nginx/pathinfo.conf  > /dev/null
-wget -O /etc/nginx/enable_php.conf   ${BASE_URL}/nginx/enable_php.conf  > /dev/null
-wget -O /etc/nginx/nginx.conf   ${BASE_URL}/nginx/nginx.conf  > /dev/null
+wget -O /caddy/Caddyfile   ${BASE_URL}/caddy/Caddyfile  
+wget -O /etc/apache2/sites-available/000-default.conf   ${BASE_URL}/apache/000-default.conf 
+wget -O /var/www/html/index.html   ${BASE_URL}/www/index.html  
+wget -O /etc/nginx/pathinfo.conf   ${BASE_URL}/nginx/pathinfo.conf  
+wget -O /etc/nginx/enable_php.conf   ${BASE_URL}/nginx/enable_php.conf  
+wget -O /etc/nginx/nginx.conf   ${BASE_URL}/nginx/nginx.conf  
 
 echo "OD-j配置文件生成"
-wget -O /etc/nginx/vhost/od.conf  ${BASE_URL}/nginx/vhost/od.conf  > /dev/null
-wget -O /etc/nginx/fcgiwrap.conf https://raw.githubusercontent.com/MICHAEL-888/oneindex-j/cdn/nginx/fcgiwrap.conf  > /dev/null
-wget -O /etc/nginx/fcgiwrap-php https://raw.githubusercontent.com/MICHAEL-888/oneindex-j/cdn/nginx/fcgiwrap-php  > /dev/null
-
+wget -O /etc/nginx/vhost/od.conf  ${BASE_URL}/nginx/vhost/od.conf  
+wget -O /etc/nginx/fcgiwrap.conf https://raw.githubusercontent.com/MICHAEL-888/oneindex-j/cdn/nginx/fcgiwrap.conf 
+wget -O /etc/nginx/fcgiwrap-php https://raw.githubusercontent.com/MICHAEL-888/oneindex-j/cdn/nginx/fcgiwrap-php  
 echo "om配置生成"
 if [ ! -d /etc/nginx/vhost ] ; then
   mkdir -p /etc/nginx/vhost
 fi
-wget -O /etc/nginx/vhost/om.wangjm.ml.conf    ${BASE_URL}/nginx/vhost/om.wangjm.ml.conf > /dev/null
-wget -O /etc/nginx/vhost/reproxy.conf    ${BASE_URL}/nginx/vhost/reproxy.conf > /dev/null
+wget -O /etc/nginx/vhost/om.wangjm.ml.conf    ${BASE_URL}/nginx/vhost/om.wangjm.ml.conf 
+wget -O /etc/nginx/vhost/reproxy.conf    ${BASE_URL}/nginx/vhost/reproxy.conf 
 if [ ! -f /etc//mnt/data/log/om.wangjm.ml.log ] ; then
   mkdir -p /mnt/data/log
   touch /mnt/data/log/om.wangjm.ml.log
