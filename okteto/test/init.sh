@@ -16,6 +16,8 @@ if [ ! -d /mnt/data/om.wangjm.ml ] ; then
   wget -O /mnt/data/om.wangjm.ml.tar.gz http://175.178.175.113:2100/file/om.wangjm.ml.tar.gz
   tar -zxf /mnt/data/om.wangjm.ml.tar.gz -C /mnt/data
 #  chmod -R 766 /mnt/data/om.wangjm.ml
+else
+  echo "资源文件已经存在，无需下载"
 fi
 
 echo "下载CR资源文件"
@@ -23,12 +25,16 @@ if [ ! -d /mnt/data/cr ] ; then
 #  mkdir -p /mnt/data/
   wget -O /mnt/data/cr.tar.gz http://175.178.175.113:2100/file/cr.tar.gz
   tar -zxf /mnt/data/cr.tar.gz -C /mnt/data
+else
+  echo "资源文件已经存在，无需下载"
 fi
 
 echo "准备OD-j资源文件"
 if [ ! -d /mnt/data/oneindex-j ] ; then 
   cd /mnt/data
   git clone https://github.com/jialezi/oneindex-j
+else
+  echo "资源文件已经存在，无需下载"
 fi
 
 
