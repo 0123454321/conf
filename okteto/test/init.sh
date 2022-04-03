@@ -44,6 +44,14 @@ wget -O /root/ServerStatus/server/config.json   ${BASE_URL}/ServerStatus/ServerS
 wget -O /root/ServerStatus/clients/client-linux.py   ${BASE_URL}/ServerStatus/ServerStatus-client-linux.py 
 chmod a+x /root/ServerStatus/clients/client-linux.py
 
+echo "备份配置"
+if [ -f /mnt/data/bak_conf.sh ] ; then
+  wget -O /mnt/data/bak_conf.sh ${BASE_URL}/cron/bak_conf.sh 
+else 
+  echo "文件已经在在，写入定时任务"
+  
+fi
+
 echo "Web Server配置文件生成"
 wget -O /caddy/Caddyfile   ${BASE_URL}/caddy/Caddyfile  
 wget -O /etc/apache2/sites-available/000-default.conf   ${BASE_URL}/apache/000-default.conf 
@@ -62,7 +70,7 @@ if [ ! -d /etc/nginx/vhost ] ; then
 fi
 wget -O /etc/nginx/vhost/om.wangjm.ml.conf    ${BASE_URL}/nginx/vhost/om.wangjm.ml.conf 
 wget -O /etc/nginx/vhost/reproxy.conf    ${BASE_URL}/nginx/vhost/reproxy.conf 
-if [ ! -f /etc//mnt/data/log/om.wangjm.ml.log ] ; then
+if [ ! -f /mnt/data/log/om.wangjm.ml.log ] ; then
   mkdir -p /mnt/data/log
   touch /mnt/data/log/om.wangjm.ml.log
   touch /mnt/data/log/om.wangjm.ml.error.log;
