@@ -96,7 +96,7 @@ wstunnel -s 127.0.0.1:8989 &
 echo "启动PHP"
 mkdir /run/php
 php-fpm7.4
-echo "启动Web (nginx,apache caddy)"
+echo "启动Web nginx,apache caddy"
 nginx
 service mysql restart
 service apache2 restart
