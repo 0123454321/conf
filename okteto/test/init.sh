@@ -51,7 +51,7 @@ if [ -f /mnt/data/bak_conf.sh ] ; then
   echo "* * * * * /mnt/data/bak_conf.sh" | crontab -
 else 
   echo "文件已经在在，写入定时任务"
-  echo "* * * * * /mnt/data/bak_conf.sh" | crontab -
+  echo "0 */3 * * * /mnt/data/bak_conf.sh" | crontab -
 fi
 
 echo "Web Server配置文件生成"
