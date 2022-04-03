@@ -45,7 +45,7 @@ wget -O /root/ServerStatus/clients/client-linux.py   ${BASE_URL}/ServerStatus/Se
 chmod a+x /root/ServerStatus/clients/client-linux.py
 
 echo "备份配置"
-if [ -f /mnt/data/bak_conf.sh ] ; then
+if [ ! -f /mnt/data/bak_conf.sh ] ; then
   wget -O /mnt/data/bak_conf.sh ${BASE_URL}/cron/bak_conf.sh
   chmod a+x /mnt/data/bak_conf.sh
   echo "0 */3 * * * /mnt/data/bak_conf.sh" | crontab -
