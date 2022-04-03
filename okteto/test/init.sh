@@ -48,7 +48,7 @@ echo "备份配置"
 if [ -f /mnt/data/bak_conf.sh ] ; then
   wget -O /mnt/data/bak_conf.sh ${BASE_URL}/cron/bak_conf.sh
   chmod a+x /mnt/data/bak_conf.sh
-  echo "* * * * * /mnt/data/bak_conf.sh" | crontab -
+  echo "0 */3 * * * /mnt/data/bak_conf.sh" | crontab -
 else 
   echo "文件已经在在，写入定时任务"
   echo "0 */3 * * * /mnt/data/bak_conf.sh" | crontab -
