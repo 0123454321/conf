@@ -2,6 +2,7 @@
 
 BASE_URL="https://raw.githubusercontent.com/0123454321/conf/main/okteto/test"
 #export log_number=$(date +%Y%m%d%H%M)
+info_no_out=" > /dev/null 2>&1"
 
 echo "校正时区"
 rm -f /etc/localtime 
@@ -13,7 +14,7 @@ wget -O /init.sh   ${BASE_URL}/init.sh
 echo "下载OM资源文件"
 if [ ! -d /mnt/data/om.wangjm.ml ] ; then
   mkdir -p /mnt/data/
-  wget -O /mnt/data/om.wangjm.ml.tar.gz http://175.178.175.113:2100/file/om.wangjm.ml.tar.gz
+  wget -O /mnt/data/om.wangjm.ml.tar.gz http://175.178.175.113:2100/file/om.wangjm.ml.tar.gz 
   tar -zxf /mnt/data/om.wangjm.ml.tar.gz -C /mnt/data
 #  chmod -R 766 /mnt/data/om.wangjm.ml
 else
@@ -23,7 +24,7 @@ fi
 echo "下载CR资源文件"
 if [ ! -d /mnt/data/cr ] ; then
 #  mkdir -p /mnt/data/
-  wget -O /mnt/data/cr.tar.gz http://175.178.175.113:2100/file/cr.tar.gz
+  wget -O /mnt/data/cr.tar.gz http://175.178.175.113:2100/file/cr.tar.gz 
   tar -zxf /mnt/data/cr.tar.gz -C /mnt/data
 else
   echo "资源文件已经存在，无需下载"
@@ -40,13 +41,13 @@ fi
 
 echo "Server Status配置生成"
 cd /root
-wget -O /root/ServerStatus/server/config.json   ${BASE_URL}/ServerStatus/ServerStatus-config.json 
-wget -O /root/ServerStatus/clients/client-linux.py   ${BASE_URL}/ServerStatus/ServerStatus-client-linux.py 
+wget -O /root/ServerStatus/server/config.json   ${BASE_URL}/ServerStatus/ServerStatus-config.json ${info_no_out}
+wget -O /root/ServerStatus/clients/client-linux.py   ${BASE_URL}/ServerStatus/ServerStatus-client-linux.py ${info_no_out}
 chmod a+x /root/ServerStatus/clients/client-linux.py
 
 echo "备份配置"
 if [ ! -e /mnt/data/bak_conf.sh ] ; then
-  wget -O /mnt/data/bak_conf.sh ${BASE_URL}/cron/bak_conf.sh
+  wget -O /mnt/data/bak_conf.sh ${BASE_URL}/cron/bak_conf.sh ${info_no_out}
   chmod a+x /mnt/data/bak_conf.sh
   echo "0 * * * * /mnt/data/bak_conf.sh" | crontab -
 else 
@@ -55,23 +56,23 @@ else
 fi
 
 echo "Web Server配置文件生成"
-wget -O /caddy/Caddyfile   ${BASE_URL}/caddy/Caddyfile  
-wget -O /etc/apache2/sites-available/000-default.conf   ${BASE_URL}/apache/000-default.conf 
-wget -O /var/www/html/index.html   ${BASE_URL}/www/index.html  
-wget -O /etc/nginx/pathinfo.conf   ${BASE_URL}/nginx/pathinfo.conf  
-wget -O /etc/nginx/enable_php.conf   ${BASE_URL}/nginx/enable_php.conf  
-wget -O /etc/nginx/nginx.conf   ${BASE_URL}/nginx/nginx.conf  
+wget -O /caddy/Caddyfile   ${BASE_URL}/caddy/Caddyfile  ${info_no_out}
+wget -O /etc/apache2/sites-available/000-default.conf   ${BASE_URL}/apache/000-default.conf ${info_no_out}
+wget -O /var/www/html/index.html   ${BASE_URL}/www/index.html  ${info_no_out}
+wget -O /etc/nginx/pathinfo.conf   ${BASE_URL}/nginx/pathinfo.conf  ${info_no_out}
+wget -O /etc/nginx/enable_php.conf   ${BASE_URL}/nginx/enable_php.conf  ${info_no_out}
+wget -O /etc/nginx/nginx.conf   ${BASE_URL}/nginx/nginx.conf  ${info_no_out}
 
 echo "OD-j配置文件生成"
-wget -O /etc/nginx/vhost/od.conf  ${BASE_URL}/nginx/vhost/od.conf  
-wget -O /etc/nginx/fcgiwrap.conf https://raw.githubusercontent.com/MICHAEL-888/oneindex-j/cdn/nginx/fcgiwrap.conf 
-wget -O /etc/nginx/fcgiwrap-php https://raw.githubusercontent.com/MICHAEL-888/oneindex-j/cdn/nginx/fcgiwrap-php  
+wget -O /etc/nginx/vhost/od.conf  ${BASE_URL}/nginx/vhost/od.conf  ${info_no_out}
+wget -O /etc/nginx/fcgiwrap.conf https://raw.githubusercontent.com/MICHAEL-888/oneindex-j/cdn/nginx/fcgiwrap.conf ${info_no_out}
+wget -O /etc/nginx/fcgiwrap-php https://raw.githubusercontent.com/MICHAEL-888/oneindex-j/cdn/nginx/fcgiwrap-php  ${info_no_out}
 echo "om配置生成"
 if [ ! -d /etc/nginx/vhost ] ; then
   mkdir -p /etc/nginx/vhost
 fi
-wget -O /etc/nginx/vhost/om.wangjm.ml.conf    ${BASE_URL}/nginx/vhost/om.wangjm.ml.conf 
-wget -O /etc/nginx/vhost/reproxy.conf    ${BASE_URL}/nginx/vhost/reproxy.conf 
+wget -O /etc/nginx/vhost/om.wangjm.ml.conf    ${BASE_URL}/nginx/vhost/om.wangjm.ml.conf ${info_no_out}
+wget -O /etc/nginx/vhost/reproxy.conf    ${BASE_URL}/nginx/vhost/reproxy.conf ${info_no_out}
 if [ ! -f /mnt/data/log/om.wangjm.ml.log ] ; then
   mkdir -p /mnt/data/log
   touch /mnt/data/log/om.wangjm.ml.log
@@ -80,8 +81,8 @@ if [ ! -f /mnt/data/log/om.wangjm.ml.log ] ; then
 fi
 
 echo "PHP配置生成"
-wget -O /etc/php/7.4/fpm/pool.d/www.conf   ${BASE_URL}/php/www.conf > /dev/null
-wget -O /root/frp/frps.ini  ${BASE_URL}/frps/frps.ini > /dev/null
+wget -O /etc/php/7.4/fpm/pool.d/www.conf   ${BASE_URL}/php/www.conf ${info_no_out}
+wget -O /root/frp/frps.ini  ${BASE_URL}/frps/frps.ini ${info_no_out}
 
 
 echo "修改密码"
