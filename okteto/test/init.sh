@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BASE_URL="https://raw.githubusercontent.com/0123454321/conf/main/okteto/test"
-log_number=$(date +%Y%m%d%H%M)
+export log_number=$(date +%Y%m%d%H%M)
 
 echo "校正时区"
 rm -f /etc/localtime 
