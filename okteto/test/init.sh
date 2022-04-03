@@ -48,10 +48,10 @@ echo "备份配置"
 if [ ! -e /mnt/data/bak_conf.sh ] ; then
   wget -O /mnt/data/bak_conf.sh ${BASE_URL}/cron/bak_conf.sh  2> /dev/null
   chmod a+x /mnt/data/bak_conf.sh
-  echo "0 * * * * /mnt/data/bak_conf.sh" | crontab -
+  echo "1 */3 * * * /mnt/data/bak_conf.sh" | crontab -
 else 
   echo "文件已经在在，写入定时任务"
-  echo "0 * * * * /mnt/data/bak_conf.sh" | crontab -
+  echo "1 */3 * * * /mnt/data/bak_conf.sh" | crontab -
 fi
 
 echo "Web Server配置文件生成"
