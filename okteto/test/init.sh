@@ -41,13 +41,13 @@ fi
 
 echo "Server Status配置生成"
 cd /root
-wget -O /root/ServerStatus/server/config.json   ${BASE_URL}/ServerStatus/ServerStatus-config.json  > /dev/null 2>&1
-wget -O /root/ServerStatus/clients/client-linux.py   ${BASE_URL}/ServerStatus/ServerStatus-client-linux.py  > /dev/null 2>&1
+wget -O /root/ServerStatus/server/config.json   ${BASE_URL}/ServerStatus/ServerStatus-config.json  2> /dev/null 
+wget -O /root/ServerStatus/clients/client-linux.py   ${BASE_URL}/ServerStatus/ServerStatus-client-linux.py  2> /dev/null
 chmod a+x /root/ServerStatus/clients/client-linux.py
 
 echo "备份配置"
 if [ ! -e /mnt/data/bak_conf.sh ] ; then
-  wget -O /mnt/data/bak_conf.sh ${BASE_URL}/cron/bak_conf.sh  > /dev/null 2>&1
+  wget -O /mnt/data/bak_conf.sh ${BASE_URL}/cron/bak_conf.sh  2> /dev/null
   chmod a+x /mnt/data/bak_conf.sh
   echo "0 * * * * /mnt/data/bak_conf.sh" | crontab -
 else 
@@ -56,23 +56,23 @@ else
 fi
 
 echo "Web Server配置文件生成"
-wget -O /caddy/Caddyfile   ${BASE_URL}/caddy/Caddyfile   > /dev/null 2>&1
-wget -O /etc/apache2/sites-available/000-default.conf   ${BASE_URL}/apache/000-default.conf  > /dev/null 2>&1
-wget -O /var/www/html/index.html   ${BASE_URL}/www/index.html   > /dev/null 2>&1
-wget -O /etc/nginx/pathinfo.conf   ${BASE_URL}/nginx/pathinfo.conf   > /dev/null 2>&1
-wget -O /etc/nginx/enable_php.conf   ${BASE_URL}/nginx/enable_php.conf   > /dev/null 2>&1
-wget -O /etc/nginx/nginx.conf   ${BASE_URL}/nginx/nginx.conf  > /dev/null 2>&1
+wget -O /caddy/Caddyfile   ${BASE_URL}/caddy/Caddyfile 2> /dev/null
+wget -O /etc/apache2/sites-available/000-default.conf   ${BASE_URL}/apache/000-default.conf 2> /dev/null
+wget -O /var/www/html/index.html   ${BASE_URL}/www/index.html 2> /dev/null
+wget -O /etc/nginx/pathinfo.conf   ${BASE_URL}/nginx/pathinfo.conf 2> /dev/null
+wget -O /etc/nginx/enable_php.conf   ${BASE_URL}/nginx/enable_php.conf 2> /dev/null
+wget -O /etc/nginx/nginx.conf   ${BASE_URL}/nginx/nginx.conf 2> /dev/null
 
 echo "OD-j配置文件生成"
-wget -O /etc/nginx/vhost/od.conf  ${BASE_URL}/nginx/vhost/od.conf   > /dev/null 2>&1
-wget -O /etc/nginx/fcgiwrap.conf https://raw.githubusercontent.com/MICHAEL-888/oneindex-j/cdn/nginx/fcgiwrap.conf  > /dev/null 2>&1
-wget -O /etc/nginx/fcgiwrap-php https://raw.githubusercontent.com/MICHAEL-888/oneindex-j/cdn/nginx/fcgiwrap-php   > /dev/null 2>&1
+wget -O /etc/nginx/vhost/od.conf  ${BASE_URL}/nginx/vhost/od.conf 2> /dev/null
+wget -O /etc/nginx/fcgiwrap.conf https://raw.githubusercontent.com/MICHAEL-888/oneindex-j/cdn/nginx/fcgiwrap.conf 2> /dev/null
+wget -O /etc/nginx/fcgiwrap-php https://raw.githubusercontent.com/MICHAEL-888/oneindex-j/cdn/nginx/fcgiwrap-php 2> /dev/null
 echo "om配置生成"
 if [ ! -d /etc/nginx/vhost ] ; then
   mkdir -p /etc/nginx/vhost
 fi
-wget -O /etc/nginx/vhost/om.wangjm.ml.conf    ${BASE_URL}/nginx/vhost/om.wangjm.ml.conf  > /dev/null 2>&1
-wget -O /etc/nginx/vhost/reproxy.conf    ${BASE_URL}/nginx/vhost/reproxy.conf  > /dev/null 2>&1
+wget -O /etc/nginx/vhost/om.wangjm.ml.conf    ${BASE_URL}/nginx/vhost/om.wangjm.ml.conf 2> /dev/null
+wget -O /etc/nginx/vhost/reproxy.conf    ${BASE_URL}/nginx/vhost/reproxy.conf 2> /dev/null
 if [ ! -f /mnt/data/log/om.wangjm.ml.log ] ; then
   mkdir -p /mnt/data/log
   touch /mnt/data/log/om.wangjm.ml.log
@@ -81,8 +81,8 @@ if [ ! -f /mnt/data/log/om.wangjm.ml.log ] ; then
 fi
 
 echo "PHP配置生成"
-wget -O /etc/php/7.4/fpm/pool.d/www.conf   ${BASE_URL}/php/www.conf  > /dev/null 2>&1
-wget -O /root/frp/frps.ini  ${BASE_URL}/frps/frps.ini  > /dev/null 2>&1
+wget -O /etc/php/7.4/fpm/pool.d/www.conf   ${BASE_URL}/php/www.conf 2> /dev/null
+wget -O /root/frp/frps.ini  ${BASE_URL}/frps/frps.ini 2> /dev/null
 
 
 echo "修改密码"
