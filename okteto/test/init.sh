@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BASE_URL="https://raw.githubusercontent.com/0123454321/conf/main/okteto/test"
-export log_number=$(date +%Y%m%d%H%M)
+#export log_number=$(date +%Y%m%d%H%M)
 
 echo "校正时区"
 rm -f /etc/localtime 
@@ -97,7 +97,7 @@ echo "启动CR"
 if [ ! -d /mnt/data/cr/log ] ; then
   mkdir -p /mnt/data/cr/log
 fi
-/mnt/data/cr/cr >> /mnt/data/cr/log/log_${log_number}.log &
+/mnt/data/cr/cr >> /mnt/data/cr/log/log_$(date +%Y%m%d%H%M).log &
 
 #echo "写入hosts"
 #echo "127.0.0.1 om.wangjm.ml" >> /etc/hosts
