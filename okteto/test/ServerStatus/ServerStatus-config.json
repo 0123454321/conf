@@ -49,7 +49,7 @@
 			"username": "s6",
 			"name": "Openwrt-Home",
 			"type": "Router",
-			"host": "test5",
+			"host": "test6",
 			"location": "🇨🇳",
 			"password": "123456..",
 			"monthstart": 1
@@ -58,8 +58,26 @@
 			"username": "s7",
 			"name": "Mac-OSX",
 			"type": "MacMini",
-			"host": "test5",
+			"host": "test7",
 			"location": "🇨🇳",
+			"password": "123456..",
+			"monthstart": 1
+		},
+		{
+			"username": "s8",
+			"name": "K8S_Baota",
+			"type": "K8S",
+			"host": "test8",
+			"location": "🇩🇪",
+			"password": "123456..",
+			"monthstart": 1
+		},
+		{
+			"username": "s9",
+			"name": "K8S_V4UI",
+			"type": "K8S",
+			"host": "test9",
+			"location": "🇩🇪",
 			"password": "123456..",
 			"monthstart": 1
 		},
