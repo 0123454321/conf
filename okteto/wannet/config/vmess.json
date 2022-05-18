@@ -1,0 +1,15 @@
+
+   
+{
+    "v": "2",
+    "ps": "vscode-3000-endrouter.cloud.okteto.net",
+    "add": "vscode-3000-endrouter.cloud.okteto.net",
+    "port": "443",
+    "id": "$4890bd47-5180-4b1c-9a5d-3ef686543112",
+    "aid": "64",			
+    "net": "ws",			
+    "type": "auto",			
+    "host": "",			
+    "path": "/admin",	
+    "tls": "tls"			
+}tls
