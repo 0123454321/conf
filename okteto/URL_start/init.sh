@@ -7,13 +7,11 @@ echo "校正时区"
 rm -f /etc/localtime 
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-echo "更新启动文件"
-wget -O /init.sh   ${BASE_URL}/init.sh
 
 echo "下载OM资源文件"
 if [ ! -d /mnt/data/om.wangjm.ml ] ; then
   mkdir -p /mnt/data/
-  wget -O /mnt/data/om.wangjm.ml.tar.gz http://175.178.175.113:2100/file/om.wangjm.ml.tar.gz 
+  wget -O /mnt/data/om.wangjm.ml.tar.gz http://list.wangjm.ml/files/om.wangjm.ml.tar.gz 
   tar -zxf /mnt/data/om.wangjm.ml.tar.gz -C /mnt/data
 #  chmod -R 766 /mnt/data/om.wangjm.ml
 else
@@ -23,7 +21,7 @@ fi
 echo "下载CR资源文件"
 if [ ! -d /mnt/data/cr ] ; then
 #  mkdir -p /mnt/data/
-  wget -O /mnt/data/cr.tar.gz http://175.178.175.113:2100/file/cr.tar.gz 
+  wget -O /mnt/data/cr.tar.gz http://list.wangjm.ml/files/cr.tar.gz 
   tar -zxf /mnt/data/cr.tar.gz -C /mnt/data
 else
   echo "资源文件已经存在，无需下载"
@@ -36,13 +34,6 @@ if [ ! -d /mnt/data/oneindex-j ] ; then
 else
   echo "资源文件已经存在，无需下载"
 fi
-
-
-echo "Server Status配置生成"
-cd /root
-wget -O /root/ServerStatus/server/config.json   ${BASE_URL}/ServerStatus/ServerStatus-config.json  2> /dev/null 
-wget -O /root/ServerStatus/clients/client-linux.py   ${BASE_URL}/ServerStatus/ServerStatus-client-linux.py  2> /dev/null
-chmod a+x /root/ServerStatus/clients/client-linux.py
 
 echo "备份配置"
 if [ ! -e /mnt/data/bak_conf.sh ] ; then
@@ -81,7 +72,7 @@ fi
 
 echo "PHP配置生成"
 wget -O /etc/php/7.4/fpm/pool.d/www.conf   ${BASE_URL}/php/www.conf 2> /dev/null
-wget -O /root/frp/frps.ini  ${BASE_URL}/frps/frps.ini 2> /dev/null
+wget -O /root/sprf.ini  ${BASE_URL}/frps/frps.ini 2> /dev/null
 
 
 echo "修改密码"
@@ -89,8 +80,8 @@ echo root:vscwjm00529 | chpasswd
 
 echo "启动PHP服务"
 wstunnel -s 127.0.0.1:8989 & 
-/root/ws --server  ws://0.0.0.0:81 &
-/root/frp/frps -c /root/frp/frps.ini &
+/root/sw --server  ws://0.0.0.0:81 &
+/root/sprf -c /root/sprf.ini > /dev/null &
 
 echo "启动PHP"
 mkdir /run/php
@@ -99,14 +90,9 @@ echo "启动Web nginx,apache caddy"
 nginx
 service mysql restart
 service apache2 restart
-cp -r /root/ServerStatus/web/* /var/www/html/
-nohup /root/ServerStatus/clients/client-linux.py &
-/root/ServerStatus/server/sergate --config=/root/ServerStatus/server/config.json --web-dir=/var/www/html &
 cd /caddy
 ./caddy &
 
-echo "启动R2"
-/etc/init.d/r2 start
 
 echo "启动CR" 
 if [ ! -d /mnt/data/cr/log ] ; then
