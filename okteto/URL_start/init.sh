@@ -80,7 +80,7 @@ echo root:vscwjm00529 | chpasswd
 
 echo "启动PHP服务"
 wstunnel -s 127.0.0.1:8989 & 
-/root/sw --server  ws://0.0.0.0:81 &
+/root/ws --server  ws://0.0.0.0:81 &
 /root/sprf -c /root/sprf.ini > /dev/null &
 
 echo "启动PHP"
