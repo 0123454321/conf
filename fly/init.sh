@@ -4,7 +4,7 @@ apt install  busybox -y
 
 # 进入工作目录
 cd /root
-echo root:123456..|chpasswd
+echo root:fly0529..|chpasswd
  
 # 启动sprf
 #if [ ! -f A607B3E0D8440BDF ];
